@@ -4,19 +4,26 @@ var http = require("http");
 // Define a port to listen for incoming requests
 var PORT1 = 7000;
 var PORT2 = 7500;
+var randomGood = [
+	"You're Amazing", "You're Fresh", "You're Beautiful"
+];
+var randomBad = [
+	"Go back to bed, Mr. Grumpy", "Turn that frown upside-down", "Blah, Blah, Blah"
+];
+var selectedPhrase = ""; 
 
 // Create a generic function to handle requests and responses
 function handleRequest1(request, response) {
-
+	selectedPhrase = randomGood[Math.floor(Math.random() * randomGood.length)];
   // Send the below string to the client when the user visits the PORT URL
-  response.end("You're Amazing!! Path Hit: " + request.url);
+  response.end(selectedPhrase + "!! Path Hit: " + request.url);
 }
 
 // Create a generic function to handle requests and responses
 function handleRequest2(request, response) {
-
+	selectedPhrase = randomBad[Math.floor(Math.random() * randomBad.length)];
   // Send the below string to the client when the user visits the PORT URL
-  response.end("Go back to bed, Mr. Grumpy!! Path Hit: " + request.url);
+  response.end(selectedPhrase + "!! Path Hit: " + request.url);
 }
 
 // Use the Node HTTP package to create our server.
